@@ -15,7 +15,7 @@ public interface IContinent {
 	 * 
 	 * @param territories
 	 */
-	public void setTerritories(ArrayList<ITerritory> territories);
+	public void addTerritory(ITerritory territory);
 
 	/**
 	 * 

@@ -20,7 +20,7 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public void SetContinent(ArrayList<IContinent> continents) {
+	public void SetContinents(ArrayList<IContinent> continents) {
 		this.continents = continents;
 	}
 
@@ -32,6 +32,17 @@ public class Board implements IBoard {
 	@Override
 	public void SetTerritory(ArrayList<ITerritory> territories) {
 		this.territories = territories;
+	}
+
+	@Override
+	public ITerritory getTerritoryByNumber(int number) {
+		for (int i = 0; i < territories.size(); i++)
+			if (territories.get(i).getNumber() == number)
+				return territories.get(i);
+
+		// if not found return null
+		return null;
+
 	}
 
 }

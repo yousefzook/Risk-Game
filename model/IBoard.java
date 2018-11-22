@@ -16,7 +16,7 @@ public interface IBoard {
 	 * 
 	 * @param continent
 	 */
-	public void SetContinent(ArrayList<IContinent> continents);
+	public void SetContinents(ArrayList<IContinent> continents);
 
 	/**
 	 * 
@@ -29,5 +29,12 @@ public interface IBoard {
 	 * @param territory
 	 */
 	public void SetTerritory(ArrayList<ITerritory> territories);
+
+	/**
+	 * 
+	 * @param number
+	 * @return
+	 */
+	public ITerritory getTerritoryByNumber(int number);
 
 }

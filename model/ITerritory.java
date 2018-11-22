@@ -16,7 +16,7 @@ public interface ITerritory {
 	 * 
 	 * @param neighbors
 	 */
-	public void setNeighbors(Set<ITerritory> neighbors);
+	public void addNeighbor(ITerritory neighbor);
 
 	/**
 	 * 
@@ -53,4 +53,12 @@ public interface ITerritory {
 	 * @param parentContinent
 	 */
 	public void setParentContinent(IContinent parentContinent);
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getNumber();
+
+
 }

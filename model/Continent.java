@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Continent implements IContinent {
 
@@ -10,12 +11,24 @@ public class Continent implements IContinent {
 	private int value;
 	private int noOfTerrs;
 
+	public Continent() {
+		territories = new ArrayList<>();
+		// adding continents color
+		Random rand = new Random();
+		float r = rand.nextFloat();
+		float g = rand.nextFloat();
+		float b = rand.nextFloat();
+		Color color = new Color(r, g, b);
+		this.color = color;
+
+	}
+
 	public ArrayList<ITerritory> getTerritories() {
 		return territories;
 	}
 
-	public void setTerritories(ArrayList<ITerritory> territories) {
-		this.territories = territories;
+	public void addTerritory(ITerritory territory) {
+		this.territories.add(territory);
 	}
 
 	public Color getColor() {

@@ -1,14 +1,17 @@
 package controller;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Random;
+
+import model.ITerritory;
 
 public class HumanAgent implements IPlayer {
 
 	private String name;
 	private int additionalArmy;
-	private int noOfAcqTerrs;
 	private Color color;
+	private ArrayList<ITerritory> territories;
 
 	public HumanAgent() {
 		name = "Human Agent";
@@ -18,6 +21,7 @@ public class HumanAgent implements IPlayer {
 		float b = rand.nextFloat();
 		Color color = new Color(r, g, b);
 		this.color = color;
+		territories = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -37,11 +41,7 @@ public class HumanAgent implements IPlayer {
 	}
 
 	public int getNoOfAcqTerrs() {
-		return noOfAcqTerrs;
-	}
-
-	public void setNoOfAcqTerrs(int noOfAcqTerrs) {
-		this.noOfAcqTerrs = noOfAcqTerrs;
+		return territories.size();
 	}
 
 	public Color getColor() {
@@ -50,6 +50,18 @@ public class HumanAgent implements IPlayer {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	public void addTerritory(ITerritory terr) {
+		this.territories.add(terr);
+	}
+
+	public ArrayList<ITerritory> getTerritories() {
+		return this.territories;
+	}
+
+	public void removeTerritory(ITerritory terr) {
+		this.territories.remove(terr);
 	}
 
 }

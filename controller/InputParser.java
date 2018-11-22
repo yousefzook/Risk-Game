@@ -55,29 +55,22 @@ public class InputParser {
 		String[] p2Army = p2ArmyLine.split(" ");
 
 		// add player1 soldiers
-		int noOfAcqTerrs = 0;
 		for (int i = 0; i < p1Army.length; i++) {
 			int armySize = Integer.parseInt(p1Army[i]);
 			if (armySize > 0) {
 				board.getTerritoryByNumber(i + 1).setArmySize(armySize);
 				board.getTerritoryByNumber(i + 1).setOwner(p1);
-				noOfAcqTerrs++;
 			}
 		}
-		p1.setNoOfAcqTerrs(noOfAcqTerrs);
 
 		// add player2 soldiers
-		noOfAcqTerrs = 0;
 		for (int i = 0; i < p2Army.length; i++) {
 			int armySize = Integer.parseInt(p2Army[i]);
 			if (armySize > 0) {
 				board.getTerritoryByNumber(i + 1).setArmySize(armySize);
 				board.getTerritoryByNumber(i + 1).setOwner(p2);
-				noOfAcqTerrs++;
 			}
 		}
-		p2.setNoOfAcqTerrs(noOfAcqTerrs);
-
 	}
 
 	private void parseContinents(ArrayList<String> contsInitLines, IBoard board) {

@@ -1,6 +1,9 @@
 package controller;
 
 import java.awt.Color;
+import java.util.ArrayList;
+
+import model.ITerritory;
 
 public interface IPlayer {
 
@@ -14,9 +17,14 @@ public interface IPlayer {
 
 	public int getNoOfAcqTerrs();
 
-	public void setNoOfAcqTerrs(int noOfAcqTerrs);
-
 	public Color getColor();
 
 	public void setColor(Color color);
+
+	public void addTerritory(ITerritory terr);
+
+	public ArrayList<ITerritory> getTerritories();
+
+	public void removeTerritory(ITerritory terr);
+
 }

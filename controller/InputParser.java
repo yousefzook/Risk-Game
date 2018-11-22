@@ -61,11 +61,9 @@ public class InputParser {
 			if (armySize > 0) {
 				board.getTerritoryByNumber(i + 1).setArmySize(armySize);
 				board.getTerritoryByNumber(i + 1).setOwner(p1);
-				System.out.println("p1 terr no: " + (i + 1) + " armysize: " + armySize);
 				noOfAcqTerrs++;
 			}
 		}
-		System.out.println("p2 acq terrs: " + noOfAcqTerrs);
 		p1.setNoOfAcqTerrs(noOfAcqTerrs);
 
 		// add player2 soldiers
@@ -75,11 +73,9 @@ public class InputParser {
 			if (armySize > 0) {
 				board.getTerritoryByNumber(i + 1).setArmySize(armySize);
 				board.getTerritoryByNumber(i + 1).setOwner(p2);
-				System.out.println("p2 terr no: " + (i + 1) + " armysize: " + armySize);
 				noOfAcqTerrs++;
 			}
 		}
-		System.out.println("p2 acq terrs: " + noOfAcqTerrs);
 		p2.setNoOfAcqTerrs(noOfAcqTerrs);
 
 	}
@@ -92,7 +88,6 @@ public class InputParser {
 			String[] args = contsInitLines.get(i).split(" ");
 			int value = Integer.parseInt(args[0]);
 			con.setValue(value);
-			System.out.println("cont no: " + (i + 1) + " - value: " + value);
 			int noOfTerrs = 0;
 			// for each continent add its territories
 			for (int j = 1; j < args.length; j++) {
@@ -101,9 +96,7 @@ public class InputParser {
 				con.addTerritory(terr);
 				terr.setParentContinent(con);
 				noOfTerrs++;
-				System.out.println("cont no: " + (i + 1) + " terr: " + terrNo);
 			}
-			System.out.println("terr size: " + noOfTerrs);
 			con.setNoOfTerrs(noOfTerrs);
 			conts.add(con);
 		}
@@ -133,7 +126,6 @@ public class InputParser {
 				System.out.println("Error!, terr1 or terr2 not found");
 				return null;
 			}
-			System.out.println("edge - terr1: " + sides[0] + " - terr2: " + sides[1]);
 			terr1.addNeighbor(terr2);
 			terr2.addNeighbor(terr1);
 		}

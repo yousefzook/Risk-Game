@@ -1,10 +1,6 @@
 package controller;
 
-import java.awt.Color;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
-
 import model.Board;
 import model.Continent;
 import model.IBoard;
@@ -14,12 +10,12 @@ import model.Territory;
 
 public class InputParser {
 
-	IPlayer p1, p2;
+	Player p1, p2;
 
 	private InputParser() {
 	}
 
-	public InputParser(IPlayer p1, IPlayer p2) {
+	public InputParser(Player p1, Player p2) {
 		this.p1 = p1;
 		this.p2 = p2;
 	}

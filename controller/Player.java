@@ -7,15 +7,14 @@ import java.util.Random;
 import model.IBoard;
 import model.ITerritory;
 
-public class Agent implements IPlayer {
+public abstract class Player {
 
-	private String name;
-	private int additionalArmy;
-	private Color color;
-	private ArrayList<ITerritory> territories;
+	protected String name;
+	protected int additionalArmy;
+	protected Color color;
+	protected ArrayList<ITerritory> territories;
 
-	public Agent() {
-		name = "Agent";
+	public Player(String name) {
 		Random rand = new Random();
 		float r = rand.nextFloat();
 		float g = rand.nextFloat();
@@ -23,16 +22,10 @@ public class Agent implements IPlayer {
 		Color color = new Color(r, g, b);
 		this.color = color;
 		territories = new ArrayList<>();
+		this.name = name;
 	}
 
-	public IBoard nextPassiveStep(IBoard board) {
-		if(additionalArmy > 0);
-		ITerritory minTerr;
-		for(ITerritory terr: territories) {
-			if(terr.getArmySize())
-		}
-		return board;
-	}
+	public abstract void nextStep(IBoard board);
 
 	public String getName() {
 		return name;
@@ -72,6 +65,10 @@ public class Agent implements IPlayer {
 
 	public ArrayList<ITerritory> getTerritories() {
 		return this.territories;
+	}
+
+	public boolean hasTerritories() {
+		return !territories.isEmpty();
 	}
 
 }

@@ -2,19 +2,16 @@ package controller;
 
 import model.IBoard;
 
-public class HumanAgent extends Player {
+public class AggressiveAgent extends Player {
 
-
-	public HumanAgent() {
-		super("Human Agent");
+	public AggressiveAgent() {
+		super("Aggressive Agent");
 	}
 
 	@Override
 	public void nextStep(IBoard board) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 }

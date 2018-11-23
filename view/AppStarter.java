@@ -20,6 +20,7 @@ public class AppStarter {
 					.readAllLines(Paths.get("input.txt"));
 			InputParser parser = new InputParser(new PassiveAgent(), new PassiveAgent());
 			IBoard board = parser.parse(allLines);
+			ViewerClass v = new ViewerClass(board);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

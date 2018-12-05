@@ -1,10 +1,11 @@
 package controller;
 
 
-public class AggressiveAgent extends Player {
 
-	public AggressiveAgent() {
-		super("Aggressive Agent");
+public class AStarAgent extends Player {
+
+	public AStarAgent() {
+		super("A* Agent");
 	}
 
 	@Override
@@ -18,6 +19,7 @@ public class AggressiveAgent extends Player {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 }

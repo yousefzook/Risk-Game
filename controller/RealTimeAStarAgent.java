@@ -1,10 +1,11 @@
 package controller;
 
 
-public class AggressiveAgent extends Player {
+public class RealTimeAStarAgent extends Player {
 
-	public AggressiveAgent() {
-		super("Aggressive Agent");
+	public RealTimeAStarAgent() {
+		// TODO Auto-generated constructor stub
+		super("Real-time A* Agent");
 	}
 
 	@Override

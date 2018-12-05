@@ -1,15 +1,12 @@
 package view;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
 import controller.InputParser;
 import controller.PassiveAgent;
 import model.IBoard;
-import model.ITerritory;
 
 public class AppStarter {
 

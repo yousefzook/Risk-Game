@@ -1,6 +1,5 @@
 package controller;
 
-import model.IBoard;
 
 public class PacifistAgent extends Player {
 
@@ -9,9 +8,15 @@ public class PacifistAgent extends Player {
 	}
 
 	@Override
-	public void nextStep(IBoard board) {
+	public void supply() {
 		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

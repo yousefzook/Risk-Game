@@ -13,6 +13,32 @@ public abstract class Player {
 	protected int additionalArmy;
 	protected Color color;
 	protected ArrayList<ITerritory> territories;
+	protected Player otherPlayer;
+	protected IBoard board;
+	
+	public abstract void supply();
+	public abstract void attack();
+	
+	public void nextStep() {
+		supply();
+		attack();
+	}
+	
+	public Player getOtherPlayer() {
+		return otherPlayer;
+	}
+
+	public void setOtherPlayer(Player otherPlayer) {
+		this.otherPlayer = otherPlayer;
+	}
+
+	public IBoard getBoard() {
+		return board;
+	}
+
+	public void setBoard(IBoard board) {
+		this.board = board;
+	}
 
 	public Player(String name) {
 		Random rand = new Random();
@@ -24,8 +50,6 @@ public abstract class Player {
 		territories = new ArrayList<>();
 		this.name = name;
 	}
-
-	public abstract void nextStep(IBoard board);
 
 	public String getName() {
 		return name;

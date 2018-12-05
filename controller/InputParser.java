@@ -1,10 +1,6 @@
 package controller;
 
-import java.awt.Color;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
-
 import model.Board;
 import model.Continent;
 import model.IBoard;
@@ -14,12 +10,12 @@ import model.Territory;
 
 public class InputParser {
 
-	IPlayer p1, p2;
+	Player p1, p2;
 
 	private InputParser() {
 	}
 
-	public InputParser(IPlayer p1, IPlayer p2) {
+	public InputParser(Player p1, Player p2) {
 		this.p1 = p1;
 		this.p2 = p2;
 	}
@@ -55,33 +51,22 @@ public class InputParser {
 		String[] p2Army = p2ArmyLine.split(" ");
 
 		// add player1 soldiers
-		int noOfAcqTerrs = 0;
 		for (int i = 0; i < p1Army.length; i++) {
 			int armySize = Integer.parseInt(p1Army[i]);
 			if (armySize > 0) {
 				board.getTerritoryByNumber(i + 1).setArmySize(armySize);
 				board.getTerritoryByNumber(i + 1).setOwner(p1);
-				System.out.println("p1 terr no: " + (i + 1) + " armysize: " + armySize);
-				noOfAcqTerrs++;
 			}
 		}
-		System.out.println("p2 acq terrs: " + noOfAcqTerrs);
-		p1.setNoOfAcqTerrs(noOfAcqTerrs);
 
 		// add player2 soldiers
-		noOfAcqTerrs = 0;
 		for (int i = 0; i < p2Army.length; i++) {
 			int armySize = Integer.parseInt(p2Army[i]);
 			if (armySize > 0) {
 				board.getTerritoryByNumber(i + 1).setArmySize(armySize);
 				board.getTerritoryByNumber(i + 1).setOwner(p2);
-				System.out.println("p2 terr no: " + (i + 1) + " armysize: " + armySize);
-				noOfAcqTerrs++;
 			}
 		}
-		System.out.println("p2 acq terrs: " + noOfAcqTerrs);
-		p2.setNoOfAcqTerrs(noOfAcqTerrs);
-
 	}
 
 	private void parseContinents(ArrayList<String> contsInitLines, IBoard board) {
@@ -92,7 +77,6 @@ public class InputParser {
 			String[] args = contsInitLines.get(i).split(" ");
 			int value = Integer.parseInt(args[0]);
 			con.setValue(value);
-			System.out.println("cont no: " + (i + 1) + " - value: " + value);
 			int noOfTerrs = 0;
 			// for each continent add its territories
 			for (int j = 1; j < args.length; j++) {
@@ -101,9 +85,7 @@ public class InputParser {
 				con.addTerritory(terr);
 				terr.setParentContinent(con);
 				noOfTerrs++;
-				System.out.println("cont no: " + (i + 1) + " terr: " + terrNo);
 			}
-			System.out.println("terr size: " + noOfTerrs);
 			con.setNoOfTerrs(noOfTerrs);
 			conts.add(con);
 		}
@@ -133,7 +115,6 @@ public class InputParser {
 				System.out.println("Error!, terr1 or terr2 not found");
 				return null;
 			}
-			System.out.println("edge - terr1: " + sides[0] + " - terr2: " + sides[1]);
 			terr1.addNeighbor(terr2);
 			terr2.addNeighbor(terr1);
 		}

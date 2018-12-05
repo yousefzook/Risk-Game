@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.Color;
-import java.util.Random;
 
 public class Agent implements IPlayer {
 
@@ -9,16 +8,6 @@ public class Agent implements IPlayer {
 	private int additionalArmy;
 	private int noOfAcqTerrs;
 	private Color color;
-
-	public Agent() {
-		name = "Agent";
-		Random rand = new Random();
-		float r = rand.nextFloat();
-		float g = rand.nextFloat();
-		float b = rand.nextFloat();
-		Color color = new Color(r, g, b);
-		this.color = color;
-	}
 
 	public String getName() {
 		return name;

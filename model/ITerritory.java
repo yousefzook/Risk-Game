@@ -1,8 +1,7 @@
 package model;
 
 import java.util.Set;
-
-import controller.IPlayer;
+import controller.Player;
 
 public interface ITerritory {
 
@@ -34,13 +33,13 @@ public interface ITerritory {
 	 * 
 	 * @return
 	 */
-	public IPlayer getOwner();
+	public Player getOwner();
 
 	/**
 	 * 
 	 * @param owner
 	 */
-	public void setOwner(IPlayer owner);
+	public void setOwner(Player owner);
 
 	/**
 	 * 

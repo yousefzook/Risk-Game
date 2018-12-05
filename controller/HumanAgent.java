@@ -1,55 +1,20 @@
 package controller;
 
-import java.awt.Color;
-import java.util.Random;
+import model.IBoard;
 
-public class HumanAgent implements IPlayer {
+public class HumanAgent extends Player {
 
-	private String name;
-	private int additionalArmy;
-	private int noOfAcqTerrs;
-	private Color color;
 
 	public HumanAgent() {
-		name = "Human Agent";
-		Random rand = new Random();
-		float r = rand.nextFloat();
-		float g = rand.nextFloat();
-		float b = rand.nextFloat();
-		Color color = new Color(r, g, b);
-		this.color = color;
+		super("Human Agent");
 	}
 
-	public String getName() {
-		return name;
+	@Override
+	public void nextStep(IBoard board) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	public int getAdditionalArmy() {
-		return additionalArmy;
-	}
-
-	public void setAdditionalArmy(int additionalArmy) {
-		this.additionalArmy = additionalArmy;
-	}
-
-	public int getNoOfAcqTerrs() {
-		return noOfAcqTerrs;
-	}
-
-	public void setNoOfAcqTerrs(int noOfAcqTerrs) {
-		this.noOfAcqTerrs = noOfAcqTerrs;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
 
 }

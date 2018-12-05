@@ -1,55 +1,24 @@
 package controller;
 
-import java.awt.Color;
-import java.util.Random;
+import model.IBoard;
+import model.ITerritory;
 
-public class IntelligentAgent implements IPlayer {
-
-	private String name;
-	private int additionalArmy;
-	private int noOfAcqTerrs;
-	private Color color;
+public class IntelligentAgent extends Player {
 
 	public IntelligentAgent() {
-		name = "Intelligent Agent";
-		Random rand = new Random();
-		float r = rand.nextFloat();
-		float g = rand.nextFloat();
-		float b = rand.nextFloat();
-		Color color = new Color(r, g, b);
-		this.color = color;
+		super("Intelligent Agent");
 	}
 
-	public String getName() {
-		return name;
+	@Override
+	public void nextStep(IBoard board) {
+		nextSmartStep(board);
+
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	private void nextSmartStep(IBoard board) {
+		// TODO Auto-generated method stub
+
 	}
 
-	public int getAdditionalArmy() {
-		return additionalArmy;
-	}
-
-	public void setAdditionalArmy(int additionalArmy) {
-		this.additionalArmy = additionalArmy;
-	}
-
-	public int getNoOfAcqTerrs() {
-		return noOfAcqTerrs;
-	}
-
-	public void setNoOfAcqTerrs(int noOfAcqTerrs) {
-		this.noOfAcqTerrs = noOfAcqTerrs;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
+	
 }

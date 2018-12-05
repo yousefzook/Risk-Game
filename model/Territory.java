@@ -2,14 +2,13 @@ package model;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import controller.IPlayer;
+import controller.Player;
 
 public class Territory implements ITerritory {
 
 	private Set<ITerritory> neighbors;
 	private int armySize;
-	private IPlayer owner;
+	private Player owner;
 	private IContinent parentContinent;
 	private int number;
 
@@ -41,11 +40,11 @@ public class Territory implements ITerritory {
 		this.armySize = armySize;
 	}
 
-	public IPlayer getOwner() {
+	public Player getOwner() {
 		return owner;
 	}
 
-	public void setOwner(IPlayer owner) {
+	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
 

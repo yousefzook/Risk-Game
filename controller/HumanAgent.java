@@ -5,8 +5,8 @@ package controller;
 public class HumanAgent extends Player {
 
 
-	public HumanAgent() {
-		super("Human Agent");
+	public HumanAgent(int playerNum) {
+		super("Human Agent", playerNum);
 	}
 
 	@Override

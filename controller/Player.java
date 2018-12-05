@@ -3,27 +3,48 @@ package controller;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
-
 import model.IBoard;
 import model.ITerritory;
 
 public abstract class Player {
 
 	protected String name;
+	protected int playerNumber; // 1 for player1, 2 for player2
 	protected int additionalArmy;
 	protected Color color;
 	protected ArrayList<ITerritory> territories;
 	protected Player otherPlayer;
 	protected IBoard board;
-	
+
 	public abstract void supply();
+
 	public abstract void attack();
-	
+
+	public Player(String name, int playerNum) {
+		Random rand = new Random();
+		float r = rand.nextFloat();
+		float g = rand.nextFloat();
+		float b = rand.nextFloat();
+		Color color = new Color(r, g, b);
+		this.color = color;
+		territories = new ArrayList<>();
+		this.name = name;
+		playerNumber = playerNum;
+	}
+
+	public int getPlayerNumber() {
+		return playerNumber;
+	}
+
+	public void setPlayerNumber(int playerNumber) {
+		this.playerNumber = playerNumber;
+	}
+
 	public void nextStep() {
 		supply();
 		attack();
 	}
-	
+
 	public Player getOtherPlayer() {
 		return otherPlayer;
 	}
@@ -38,17 +59,6 @@ public abstract class Player {
 
 	public void setBoard(IBoard board) {
 		this.board = board;
-	}
-
-	public Player(String name) {
-		Random rand = new Random();
-		float r = rand.nextFloat();
-		float g = rand.nextFloat();
-		float b = rand.nextFloat();
-		Color color = new Color(r, g, b);
-		this.color = color;
-		territories = new ArrayList<>();
-		this.name = name;
 	}
 
 	public String getName() {
@@ -94,5 +104,34 @@ public abstract class Player {
 	public boolean hasTerritories() {
 		return !territories.isEmpty();
 	}
+
+	public ArrayList<ITerritory> getBorderTerrs() {
+		ArrayList<ITerritory> borderNodes = new ArrayList<>();
+
+		for (ITerritory terr : territories) {
+			boolean isBorder = false;
+			for (ITerritory neighbor : terr.getNeighbors()) {
+				if (neighbor.getOwner() == this) // if a friend node, skip
+					continue;
+				isBorder = true;
+				break;
+			}
+
+			borderNodes.add(terr);
+		}
+
+		return borderNodes;
+	}
+
+	public ArrayList<ITerritory> getEnemyOfNode(ITerritory terr) {
+		ArrayList<ITerritory> enemies = new ArrayList<>();
+		for (ITerritory neiTerr : terr.getNeighbors()) 
+			if (neiTerr.getOwner() != this)
+				enemies.add(neiTerr);
+
+		return enemies;
+	}
+	
+	
 
 }

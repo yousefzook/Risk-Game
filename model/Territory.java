@@ -56,4 +56,14 @@ public class Territory implements ITerritory {
 		this.parentContinent = parentContinent;
 	}
 
+	@Override
+	public void addArmySize(int armySize) {
+		this.armySize += armySize;
+	}
+
+	@Override
+	public void decreaseArmySize(int size) {
+		this.armySize -= size;
+	}
+
 }

@@ -15,7 +15,8 @@ public class AppStarter {
 		try {
 			ArrayList<String> allLines = (ArrayList<String>) Files
 					.readAllLines(Paths.get("input.txt"));
-			InputParser parser = new InputParser(new PassiveAgent(), new PassiveAgent());
+			InputParser parser = new InputParser(new PassiveAgent(1),
+					new PassiveAgent(2));
 			IBoard board = parser.parse(allLines);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -23,3 +24,9 @@ public class AppStarter {
 	}
 
 }
+
+/**
+ * set player1 number = 1, player2 number = 2
+ * each turn recompute continent players number
+ * 
+ * **/

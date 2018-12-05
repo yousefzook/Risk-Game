@@ -3,8 +3,8 @@ package controller;
 
 public class PacifistAgent extends Player {
 
-	public PacifistAgent() {
-		super("Pacifist Agent");
+	public PacifistAgent(int playerNum) {
+		super("Pacifist Agent", playerNum);
 	}
 
 	@Override

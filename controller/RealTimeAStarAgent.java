@@ -3,9 +3,8 @@ package controller;
 
 public class RealTimeAStarAgent extends Player {
 
-	public RealTimeAStarAgent() {
-		// TODO Auto-generated constructor stub
-		super("Real-time A* Agent");
+	public RealTimeAStarAgent(int playerNum) {
+		super("Realtime A* Agent", playerNum);
 	}
 
 	@Override

@@ -4,8 +4,8 @@ package controller;
 
 public class AStarAgent extends Player {
 
-	public AStarAgent() {
-		super("A* Agent");
+	public AStarAgent(int playerNum) {
+		super("A* Agent", playerNum);
 	}
 
 	@Override

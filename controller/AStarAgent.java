@@ -26,7 +26,7 @@ public class AStarAgent extends IntelligentAgent {
 		ArrayList<IBoard> nextStates = getNextStates(board);
 		for (IBoard newBoard : nextStates) {
 			float h = getHeuristic(newBoard);
-			queue.add(new Pair(newBoard, board.getgN() + h, new Pair(board, board.getgN(), null)));
+			queue.add(new Pair(newBoard, newBoard.getgN() + h, new Pair(board, board.getgN(), null)));
 		}
 		while (!queue.isEmpty()) {
 

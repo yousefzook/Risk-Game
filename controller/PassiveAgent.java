@@ -1,23 +1,18 @@
 package controller;
 
-import model.IBoard;
 import model.ITerritory;
 
 public class PassiveAgent extends Player {
 
-	public PassiveAgent() {
-		super("Passive Agent");
+	public PassiveAgent(int playerNum) {
+		super("Passive Agent", playerNum);
 	}
 
 	@Override
-	public void nextStep(IBoard board) {
-		nextPassiveStep(board);
-	}
-
-	public void nextPassiveStep(IBoard board) {
-		if (additionalArmy == 0) {
+	public void supply() {
+		// TODO Auto-generated method stub
+		if (additionalArmy == 0)
 			return;
-		}
 
 		ITerritory minTerr = territories.get(0);
 		int minSize = Integer.MAX_VALUE;
@@ -28,6 +23,12 @@ public class PassiveAgent extends Player {
 			}
 		}
 		minTerr.setArmySize(minSize + additionalArmy);
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

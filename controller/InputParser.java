@@ -103,20 +103,19 @@ public class InputParser {
 		ArrayList<ITerritory> territories = new ArrayList<>();
 		for (int i = 0; i < noOfTerr; i++)
 			territories.add(new Territory(i + 1));
-		IBoard board = new Board();
+		IBoard board = new Board(0);
 		board.SetTerritory(territories);
 
 		for (int i = 0; i < noOfEdges; i++) {
-			String[] sides = boardInitLines.get(i + 2)
-					.substring(1, boardInitLines.get(i + 2).length() - 1).split(" ");
+			String[] sides = boardInitLines.get(i + 2).substring(1, boardInitLines.get(i + 2).length() - 1).split(" ");
 			ITerritory terr1 = board.getTerritoryByNumber(Integer.parseInt(sides[0]));
 			ITerritory terr2 = board.getTerritoryByNumber(Integer.parseInt(sides[1]));
 			if (terr1 == null || terr2 == null) {
 				System.out.println("Error!, terr1 or terr2 not found");
 				return null;
 			}
-			terr1.addNeighbor(terr2);
-			terr2.addNeighbor(terr1);
+			terr1.addNeighbor(Integer.parseInt(sides[1]));
+			terr2.addNeighbor(Integer.parseInt(sides[0]));
 		}
 		return board;
 	}

@@ -6,7 +6,7 @@ import controller.Player;
 
 public class Territory implements ITerritory {
 
-	private Set<ITerritory> neighbors;
+	private Set<Integer> neighbors;
 	private int armySize;
 	private Player owner;
 	private IContinent parentContinent;
@@ -24,11 +24,7 @@ public class Territory implements ITerritory {
 		return number;
 	}
 
-	public Set<ITerritory> getNeighbors() {
-		return neighbors;
-	}
-
-	public void addNeighbor(ITerritory neighbor) {
+	public void addNeighbor(int neighbor) {
 		this.neighbors.add(neighbor);
 	}
 
@@ -54,6 +50,33 @@ public class Territory implements ITerritory {
 
 	public void setParentContinent(IContinent parentContinent) {
 		this.parentContinent = parentContinent;
+	}
+
+	@Override
+	public void addArmySize(int armySize) {
+		this.armySize += armySize;
+	}
+
+	@Override
+	public void decreaseArmySize(int size) {
+		this.armySize -= size;
+	}
+
+	@Override
+	public Set<Integer> getNeighbors() {
+		return neighbors;
+	}
+
+	@Override
+	public ITerritory cloneTerritory() {
+		ITerritory newTerritory = new Territory(number);
+		newTerritory.setArmySize(armySize);
+		newTerritory.setOwner(owner);
+		newTerritory.setParentContinent(parentContinent);
+		for (Integer neighb : neighbors)
+			newTerritory.addNeighbor(neighb);
+
+		return newTerritory;
 	}
 
 }

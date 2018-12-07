@@ -3,20 +3,24 @@ package controller;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
-
 import model.IBoard;
-import model.IContinent;
 import model.ITerritory;
 
-public abstract class Player implements Cloneable {
+public abstract class Player {
 
 	protected String name;
+	protected int playerNumber; // 1 for player1, 2 for player2
 	protected int additionalArmy;
 	protected Color color;
 	protected ArrayList<ITerritory> territories;
 	protected Player otherPlayer;
+	protected IBoard board;
 
-	public Player(String name) {
+	public abstract void supply();
+
+	public abstract void attack();
+
+	public Player(String name, int playerNum) {
 		Random rand = new Random();
 		float r = rand.nextFloat();
 		float g = rand.nextFloat();
@@ -25,9 +29,37 @@ public abstract class Player implements Cloneable {
 		this.color = color;
 		territories = new ArrayList<>();
 		this.name = name;
+		playerNumber = playerNum;
 	}
 
-	public abstract void nextStep(IBoard board);
+	public int getPlayerNumber() {
+		return playerNumber;
+	}
+
+	public void setPlayerNumber(int playerNumber) {
+		this.playerNumber = playerNumber;
+	}
+
+	public void nextStep() {
+		supply();
+		attack();
+	}
+
+	public Player getOtherPlayer() {
+		return otherPlayer;
+	}
+
+	public void setOtherPlayer(Player otherPlayer) {
+		this.otherPlayer = otherPlayer;
+	}
+
+	public IBoard getBoard() {
+		return board;
+	}
+
+	public void setBoard(IBoard board) {
+		this.board = board;
+	}
 
 	public String getName() {
 		return name;
@@ -73,12 +105,38 @@ public abstract class Player implements Cloneable {
 		return !territories.isEmpty();
 	}
 
-	protected Object clone() throws CloneNotSupportedException {
-		return super.clone();
+	public void updateAfterAlgorithm(ArrayList<ITerritory> terrs) {
+		terrs.clear();
+		for (ITerritory territory : terrs)
+			if (territory.getOwner().getPlayerNumber() == playerNumber)
+				territories.add(territory);
+
 	}
-	// Deletable del = new Deletable();
-	// Deletable delTemp = (Deletable ) del.clone(); // this line will return you an
-	// independent
-	// // object, the changes made to this object will
-	// // not be reflected to other object
+
+	// public ArrayList<ITerritory> getBorderTerrs() {
+	// ArrayList<ITerritory> borderNodes = new ArrayList<>();
+	//
+	// for (ITerritory terr : territories) {
+	// for (int neighbor : terr.getNeighbors()) {
+	// if (board.getTerritoryByNumber(neighbor).getOwner() == this) // if a friend
+	// node, skip
+	// continue;
+	// break;
+	// }
+	// borderNodes.add(terr);
+	// }
+	//
+	// return borderNodes;
+	// }
+	//
+	// public ArrayList<ITerritory> getEnemyOfNode(ITerritory terr) {
+	// ArrayList<ITerritory> enemies = new ArrayList<>();
+	// for (Integer neighbor : terr.getNeighbors()) {
+	// ITerritory neiTerr = board.getTerritoryByNumber(neighbor);
+	// if (neiTerr.getOwner() != this)
+	// enemies.add(neiTerr);
+	// }
+	// return enemies;
+	// }
+
 }

@@ -1,21 +1,16 @@
 package controller;
 
-import model.IBoard;
 import model.ITerritory;
 
 public class PacifistAgent extends Player {
 
-	public PacifistAgent() {
-		super("Pacifist Agent");
+	public PacifistAgent(int playerNum) {
+		super("Pacifist Agent", playerNum);
 	}
 
 	@Override
-	public void nextStep(IBoard board) {
+	public void supply() {
 		// TODO Auto-generated method stub
-
-	}
-
-	public void setAdditionArmies(IBoard board) {
 		if (additionalArmy == 0) {
 			return;
 		}
@@ -31,15 +26,17 @@ public class PacifistAgent extends Player {
 		minTerr.setArmySize(minSize + additionalArmy);
 	}
 
+	@Override
 	public void attack() {
-
+		// TODO Auto-generated method stub
 		ITerritory choosenTerr = null;
 		ITerritory choosenNeighbourTerr = null;
 		ITerritory iTerritory;
 		int minSize = Integer.MAX_VALUE;
 		for (int i = 0; i < territories.size(); i++) {
 			iTerritory = territories.get(i);
-			for (ITerritory territory : iTerritory.getNeighbors()) {
+			for (Integer neighbor : iTerritory.getNeighbors()) {
+				ITerritory territory = board.getTerritoryByNumber(neighbor);
 				if (territory.getOwner() == iTerritory.getOwner())
 					continue;
 				if (territory.getArmySize() + 1 < iTerritory.getArmySize() && territory.getArmySize() < minSize) {

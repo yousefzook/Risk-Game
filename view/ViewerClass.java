@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
-import java.util.Set;
+//import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,7 +28,8 @@ public class ViewerClass {
 
 	public ViewerClass(IBoard board) {
 		g = new MultiGraph("Board Graph");
-//		System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+		// System.setProperty("org.graphstream.ui.renderer",
+		// "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 		styleSheet = "node {" + "shape: rounded-box;" + "stroke-mode:plain;" + "stroke-width:10px;" + "size-mode:fit;" +
 		// "fill-color:white;"+
 				"fill-mode: dyn-plain;" + "text-alignment:center;" + "text-size:50px;" +
@@ -58,8 +59,11 @@ public class ViewerClass {
 			String hexColor = "#" + Integer.toHexString(terr.getParentContinent().getColor().getRGB()).substring(2);
 			graph.getNode(Integer.toString(terr.getNumber())).setAttribute("ui.style",
 					"stroke-color:" + hexColor + ";");
-			Set<ITerritory> neighbTerrs = terr.getNeighbors();
-			for (ITerritory neigh : neighbTerrs) {
+			// Set<Integer> neighbTerrs = terr.getNeighbors();
+			for (Integer neighbor : terr.getNeighbors()) {
+				ITerritory neigh = board.getTerritoryByNumber(neighbor);
+
+				// for (ITerritory neigh : neighbTerrs) {
 				if (!graph.getNode(Integer.toString(terr.getNumber()))
 						.hasEdgeBetween(Integer.toString(neigh.getNumber())))
 					graph.addEdge(Integer.toString(neigh.getNumber()) + Integer.toString(terr.getNumber()),

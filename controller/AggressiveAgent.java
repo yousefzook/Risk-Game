@@ -1,21 +1,20 @@
 package controller;
 
-import java.util.ArrayList;
-
-import model.IBoard;
 import model.IContinent;
 import model.ITerritory;
 
 public class AggressiveAgent extends Player {
 
-	public AggressiveAgent() {
-		super("Aggressive Agent");
+	public AggressiveAgent(int playerNum) {
+		super("Aggressive Agent", playerNum);
 	}
 
+	ITerritory iTerritory;
+
 	@Override
-	public void nextStep(IBoard board) {
+	public void supply() {
 		// TODO Auto-generated method stub
-		aggressiveAttack();
+		iTerritory = setAdditionArmies();
 	}
 
 	private ITerritory setAdditionArmies() {
@@ -23,48 +22,39 @@ public class AggressiveAgent extends Player {
 			return null;
 		}
 
-		ITerritory maxTerr = territories.get(0);
-		int maxSize = Integer.MIN_VALUE;
-		for (int i = 1; i < territories.size(); i++) {
-			if (territories.get(i).getArmySize() > maxSize) {
-				maxSize = territories.get(i).getArmySize();
-				maxTerr = territories.get(i);
+		IContinent minCont = null;
+		for (IContinent cont : board.getContinents()) {
+			int minContTerrs = Integer.MAX_VALUE;
+			int contTerrs = 0;
+			if (this.playerNumber == 1)
+				contTerrs = cont.getP1TerrsNum();
+			else
+				contTerrs = cont.getP2TerrsNum();
+			if (minContTerrs > contTerrs) {
+				minContTerrs = contTerrs;
+				minCont = cont;
 			}
 		}
-		maxTerr.setArmySize(maxSize + additionalArmy);
+		ITerritory maxTerr = minCont.getTerritories().get(0);
+		int maxSize = Integer.MIN_VALUE;
+		for (int i = 1; i < minCont.getTerritories().size(); i++) {
+			if (minCont.getTerritories().get(i).getArmySize() > maxSize) {
+				maxSize = minCont.getTerritories().get(i).getArmySize();
+				maxTerr = minCont.getTerritories().get(i);
+			}
+		}
+		maxTerr.addArmySize(additionalArmy);
 		return maxTerr;
 	}
 
-	public IContinent getMaxContinentTerritories(IBoard board) {
-		ArrayList<Integer> continentsValues = new ArrayList<>();
-		for (int i = 0; i < board.getContinents().size(); i++) {
-			int terrNumber = 0;
-			for (int j = 0; j < territories.size(); j++) {
-				if (territories.get(j).getParentContinent().equals(board.getContinents().get(i)))
-					terrNumber++;
-			}
-			continentsValues.add(terrNumber);
-		}
-		int temb = 0;
-		int index = 0;
-		for (int i = 0; i < continentsValues.size(); i++) {
-			if (continentsValues.get(i) > temb) {
-				temb = continentsValues.get(i);
-				index = i;
-			}
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
 
-		}
-		if (temb > 0)
-			return board.getContinents().get(index);
-		return null;
-	}
-	
-	private void aggressiveAttack() {
-		ITerritory iTerritory = setAdditionArmies();
 		ITerritory maxTerr = null;
 		int maxSize = Integer.MIN_VALUE;
-
-		for (ITerritory territory : iTerritory.getNeighbors()) {
+		for (Integer neighbor : iTerritory.getNeighbors()) {
+			ITerritory territory = board.getTerritoryByNumber(neighbor);
 			if (territory.getOwner() == iTerritory.getOwner())
 				continue;
 			if (territory.getArmySize() > maxSize && territory.getArmySize() + 1 < iTerritory.getArmySize()) {
@@ -79,8 +69,7 @@ public class AggressiveAgent extends Player {
 			maxTerr.setArmySize(newArmyNum - 1);
 			iTerritory.setArmySize(1);
 			addTerritory(maxTerr);
-//			maxx= maxTerr.clone();	
 		}
-	}
 
+	}
 }

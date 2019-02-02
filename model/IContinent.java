@@ -53,23 +53,4 @@ public interface IContinent {
 	 */
 	public void setNoOfTerrs(int noOfTerrs);
 
-	/**
-	 * 
-	 * compute the number of territories acquired for each player, sets p1TerrsNum
-	 * and p2TerrsNum variables
-	 */
-	public void computePlayersTerrsNum();
-
-	/**
-	 * 
-	 * @return number of territories for player 1
-	 */
-	public int getP1TerrsNum();
-
-	/**
-	 * 
-	 * @return number of territories for player 1
-	 */
-	public int getP2TerrsNum();
-
 }

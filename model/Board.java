@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class Board implements IBoard {
 
 	private ArrayList<ITerritory> territories;
@@ -45,8 +44,5 @@ public class Board implements IBoard {
 		return null;
 
 	}
-
-
-
 
 }

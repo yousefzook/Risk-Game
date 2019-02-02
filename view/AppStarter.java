@@ -1,12 +1,15 @@
 package view;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
 import controller.InputParser;
 import controller.PassiveAgent;
 import model.IBoard;
+import model.ITerritory;
 
 public class AppStarter {
 
@@ -15,18 +18,12 @@ public class AppStarter {
 		try {
 			ArrayList<String> allLines = (ArrayList<String>) Files
 					.readAllLines(Paths.get("input.txt"));
-			InputParser parser = new InputParser(new PassiveAgent(1),
-					new PassiveAgent(2));
+			InputParser parser = new InputParser(new PassiveAgent(), new PassiveAgent());
 			IBoard board = parser.parse(allLines);
+			ViewerClass v = new ViewerClass(board);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 }
-
-/**
- * set player1 number = 1, player2 number = 2
- * each turn recompute continent players number
- * 
- * **/

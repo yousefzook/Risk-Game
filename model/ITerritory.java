@@ -31,18 +31,6 @@ public interface ITerritory {
 
 	/**
 	 * 
-	 * @param addArmySize
-	 */
-	public void addArmySize(int armySize);
-
-	/**
-	 * 
-	 * @param addArmySize
-	 */
-	public void decreaseArmySize(int size);
-
-	/**
-	 * 
 	 * @return
 	 */
 	public Player getOwner();
@@ -70,5 +58,6 @@ public interface ITerritory {
 	 * @return
 	 */
 	public int getNumber();
+
 
 }
